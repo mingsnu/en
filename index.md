@@ -16,7 +16,7 @@ weight: 0
 {% for i in (0..post_num) %}
 {% assign post = site.posts[i] %}
   <article>
-    <h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
+    <h2><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h2>
     <div class="details">
       <p>{{ post.date | date_to_long_string }}</p>
     </div>

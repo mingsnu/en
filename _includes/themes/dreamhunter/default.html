@@ -40,7 +40,7 @@
   <body>
     <section id="nav">
       <header>
-        <a href="{{ HOME_PATH }}">{{ site.title }}</a>
+        <a href="{{ BASE_PATH }}">{{ site.title }}</a>
         <p>&nbsp;</p>
       </header>
 
@@ -51,7 +51,7 @@
 	      <li  {% if p.url == page.url %}class="active"
 		   {% elsif weight == 0 and page.path contains '_posts' %}class="active"
 		   {% endif %}">
-		<a  href="{{ p.url }}">
+		<a  href="{{ BASE_PATH }}{{ p.url }}">
 		  {{ p.title }}
 		</a>
 	      </li>
