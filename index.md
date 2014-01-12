@@ -20,16 +20,15 @@ weight: 0
     <div class="details">
       <p>{{ post.date | date_to_long_string }}</p>
     </div>
-	<p class="summary">
-	{% if post.description %}
-	{{ post.description  | strip_html | strip_newlines }}
-	{% else %}
-	{{ post.content | strip_html | strip_newlines | truncate: 200 }}
-	{% endif %}
-	</p>
-	<p><a href="{{ BASE_PATH }}{{ post.url }}">Read More...</a></p>
+    <p class="summary">
+    {% if post.description %}
+      {{ post.description  | strip_html | strip_newlines }}
+    {% else %}
+      {{ post.content | strip_html | strip_newlines | truncate: 200 }}
+    {% endif %}
+    <a href="{{ BASE_PATH }}{{ post.url }}">Read More...</a></p>
   </article>
 {% endfor %}
 
-<p><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">All articles→</a></p>
+<p><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">All articles&#8594;</a></p>
 

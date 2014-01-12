@@ -135,7 +135,7 @@ td {
 
 #main {
     border: 1px solid #e4e4e4;
-    margin-left: 150px;
+    margin-left: 225px;
     padding: 40px;
     background-color: #fff;
     min-height: 600px;
@@ -154,10 +154,10 @@ td {
     padding-bottom: 10px;
     margin-bottom: 20px; }
 #header.eng h1 {
-    background: url("/themes/dreamhunter/images/head-bg.png") 50% -42px no-repeat white; }
+    background: url(/assets/themes/dreamhunter/images/head-bg.png) 50% -42px no-repeat white; }
 
 #nav {
-    width: 150px;
+    width: 225px;
     position: fixed;
     left: 20px;
     top: 20px;}
@@ -170,7 +170,7 @@ td {
     border: 1px solid #e4e4e4;
     border-right: 0;
     margin-left: 1px;
-    width: 150px; }
+    width: 225px; }
 #nav #menu_toggler {
     display: none; }
 #nav h3 {
@@ -629,4 +629,7 @@ td {
 .tag_box a:hover {
     background-color: #e5e5e5; }
 
-
+iframe{
+display: block;
+margin-left: auto;
+margin-right: auto;}
