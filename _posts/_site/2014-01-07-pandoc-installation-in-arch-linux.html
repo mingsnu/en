@@ -1,0 +1,81 @@
+<p>According to the installation guide from the <a href="http://johnmacfarlane.net/pandoc/installing.html">Pandoc homepage</a>
+We need to install the Haskell platform first.</p>
+
+<ol>
+  <li>
+    <p>Adding the following entry to <code>/etc/pacman.conf</code> (<em>above [extra]</em>)(<a href="https://wiki.archlinux.org/index.php/ArchHaskell">ref</a>):</p>
+
+    <p><code>bash
+[haskell-core]
+Server = http://xsounds.org/~haskell/core/$arch
+</code></p>
+  </li>
+  <li>
+    <p>Then using the following commands to add the key</p>
+
+    <p><code>bash
+sudo pacman-key -r 4209170B
+sudo pacman-key --lsign-key 4209170B
+</code></p>
+  </li>
+  <li>
+    <p>(Optional)If you don’t get the following error ignore this step.</p>
+
+    <blockquote>
+      <p>$ sudo pacman-key -r 4209170B
+gpg: connecting dirmngr at ‘/root/.gnupg/S.dirmngr’ failed: IPC connect call failed
+gpg: keyserver receive failed: No dirmngr
+==&gt; ERROR: Remote key not fetched correctly from keyserver.</p>
+    </blockquote>
+
+    <p>The solution is to create an empty <code>dirmngr_ldapservers.conf</code> file under <code>/root/.gnupg</code>(I don’t have the <code>.gnupg</code> folder, so need to create one first) and afterwards, the <code>pacman-key</code> commands should work fine(<a href="https://bbs.archlinux.org/viewtopic.php?id=190380">ref</a>) :</p>
+
+    <p><code>bash
+sudo mkdir -p /root/.gnupg
+sudo touch /root/.gnupg/dirmngr_ldapservers.conf
+</code></p>
+  </li>
+  <li>
+    <p>Next force a refresh of all package lists:</p>
+
+    <p><code>bash
+sudo pacman -Syy
+</code></p>
+  </li>
+  <li>
+    <p>Then install the <code>Haskell platform</code> from the official repositories(<a href="https://wiki.archlinux.org/index.php/Haskell#Haskell_platform">ref</a>):</p>
+
+    <p><code>bash
+sudo pacman -S ghc cabal-install haddock happy alex
+</code></p>
+  </li>
+  <li>
+    <p>Then use the <code>cabal</code> tool to install pandoc, you can update <code>cabal-install</code> first if new version is available(time consuming process).</p>
+
+    <p><code>bash
+cabal update
+cable install cabal-install
+cable install pandoc
+</code></p>
+  </li>
+  <li>
+    <p>At last, set <code>PATH</code> variable so that the <code>pandoc</code> command can be found. Adding the following line to the <code>~/.bash_profile</code> file:</p>
+
+    <p><code>bash
+export PATH=~/.cabal/bin:$PATH
+</code></p>
+  </li>
+</ol>
+
+<p><strong>References</strong></p>
+
+<p><a href="http://sapiengames.com/2014/04/05/install-haskell-platform-arch-linux/">http://sapiengames.com/2014/04/05/install-haskell-platform-arch-linux/</a></p>
+
+<p><a href="http://johnmacfarlane.net/pandoc/installing.html">http://johnmacfarlane.net/pandoc/installing.html</a></p>
+
+<p><a href="https://wiki.archlinux.org/index.php/ArchHaskell">https://wiki.archlinux.org/index.php/ArchHaskell</a></p>
+
+<p><a href="https://wiki.archlinux.org/index.php/Haskell#Haskell_platform">https://wiki.archlinux.org/index.php/Haskell#Haskell_platform</a></p>
+
+<p><a href="https://bbs.archlinux.org/viewtopic.php?id=190380">https://bbs.archlinux.org/viewtopic.php?id=190380</a></p>
+

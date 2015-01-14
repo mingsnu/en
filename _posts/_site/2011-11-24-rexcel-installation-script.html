@@ -1,0 +1,22 @@
+<p><strong>Notice</strong>
+This code script hasn’t been tested after first posted in 2011.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## Start R as administrator:For windows 7 user, you need to right-click the R icon,</span>
+<span class="c1">## and click run as admistrator. For windows XP user, you should login the system</span>
+<span class="c1">## as admistrator(if you have only one account in your computer, that account is</span>
+<span class="c1">## admistrator.</span>
+remotefile <span class="o">&lt;-</span> <span class="s">&quot;http://rcom.univie.ac.at/download/current/statconnDCOM.latest.exe&quot;</span>
+localfile <span class="o">&lt;-</span> <span class="kp">file.path</span><span class="p">(</span><span class="kp">tempdir</span><span class="p">(),</span><span class="s">&quot;statconnDCOM.latest.exe&quot;</span><span class="p">)</span>
+download.file<span class="p">(</span>remotefile<span class="p">,</span>localfile<span class="p">,</span>mode<span class="o">=</span><span class="s">&quot;wb&quot;</span><span class="p">)</span>
+shell<span class="p">(</span>localfile<span class="p">)</span>
+install.packages<span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;rscproxy&quot;</span><span class="p">,</span><span class="s">&quot;rcom&quot;</span><span class="p">,</span><span class="s">&quot;RExcelInstaller&quot;</span><span class="p">),</span>lib<span class="o">=</span><span class="m">.L</span>ibrary<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>rcom<span class="p">)</span>
+comRegisterRegistry<span class="p">()</span>
+<span class="kn">library</span><span class="p">(</span>RExcelInstaller<span class="p">)</span>
+installRExcel<span class="p">()</span>
+install.packages<span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;RthroughExcelWorkbooksInstaller&quot;</span><span class="p">,</span><span class="s">&quot;Rcmdr&quot;</span><span class="p">,</span>
+<span class="s">&quot;RcmdrPlugin.HH&quot;</span><span class="p">,</span>lib<span class="o">=</span><span class="m">.L</span>ibrary<span class="p">))</span>
+<span class="kn">library</span><span class="p">(</span>RthroughExcelWorkbooksInstaller<span class="p">)</span>
+installRthroughExcel<span class="p">()</span>
+<span class="c1">#install.packages(&quot;Rcmdr&quot;,dependencies=T)</span></code></pre></div>
+
