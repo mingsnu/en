@@ -68,17 +68,17 @@ We need to install the Haskell platform first.
    
 **References**
 
-http://sapiengames.com/2014/04/05/install-haskell-platform-arch-linux/
+<http://sapiengames.com/2014/04/05/install-haskell-platform-arch-linux/>
 
-http://johnmacfarlane.net/pandoc/installing.html "pandoc homepage"
+<http://johnmacfarlane.net/pandoc/installing.html>
 
-https://wiki.archlinux.org/index.php/ArchHaskell
+<https://wiki.archlinux.org/index.php/ArchHaskell>
 
-https://wiki.archlinux.org/index.php/Haskell#Haskell_platform
+<https://wiki.archlinux.org/index.php/Haskell#Haskell_platform>
 
-https://bbs.archlinux.org/viewtopic.php?id=190380
+<https://bbs.archlinux.org/viewtopic.php?id=190380>
 
-[pandoc-hp]: http://johnmacfarlane.net/pandoc/installing.html "pandoc homepage"
+[pandoc-hp]: http://johnmacfarlane.net/pandoc/installing.html
 
 [haskell]: https://wiki.archlinux.org/index.php/ArchHaskell
 
