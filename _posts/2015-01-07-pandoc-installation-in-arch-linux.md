@@ -56,8 +56,8 @@ We need to install the Haskell platform first.
 
    ```bash
    cabal update
-   cable install cabal-install
-   cable install pandoc
+   cabal install cabal-install
+   cabal install pandoc
    ```
    
 7. At last, set `PATH` variable so that the `pandoc` command can be found. Adding the following line to the `~/.bash_profile` file:
