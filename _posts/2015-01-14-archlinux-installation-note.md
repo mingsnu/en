@@ -119,42 +119,52 @@ A brief note of all steps in installing the Arch linux system would be helpful f
 
 ## After reboot, login as root:
 
-15. Connect to wifi using the same method as introduced in step 4. The following command makes computer automatically connect to this wifi later(change `wlp7s0` accordingly):
+1. Connect to wifi using the same method as introduced in step 4. The following command makes computer automatically connect to this wifi later(change `wlp7s0` accordingly):
 
-```bash
-wifi-menu wlp7s0
-pacman -S wpa_actiond
-systemctl enable dhcpd@wlp7s0.service
-```
+   ```bash
+   wifi-menu wlp7s0
+   pacman -S wpa_actiond
+   systemctl enable dhcpd@wlp7s0.service
+   ```
 
-16. Add user to the `wheel` group (only change `weicheng` accordingly):
+2. Add user to the `wheel` group (only change `weicheng` accordingly):
 
    ```bash
    useradd -m -G wheel -S /bin/bash weicheng
    passwd weicheng
    ```
-   and then uncomment the line `%wheel ALL=(ALL) ALL` in the `/etc/sudoers` file so that the user can use `sudo` command.
+   
+   and then uncomment the line
+
+   ```bash
+   %wheel ALL=(ALL) ALL
+   ```
+   in the `/etc/sudoers` file so that the user can use `sudo` command.
 
 -----------------------
 
 ## UI installation I (`nouveau`, `kde`, `xintrc`)
 
-1. I used `nouveau` graphics driver, `kde` desktop and no display manager (use `xinitrc` instead) the first time I installed Archlinux:
+1. Graphics card installation. I used `nouveau` graphics driver, `kde` desktop and no display manager (use `xinitrc` instead) the first time I installed Archlinux:
 
-    ```bash
-	# Install graphics driver
-	pacman -S xf86-video-nouveau
-	# install dependency `meas-libgl`
-	pacman -S xorg-server 
-	pacman -S xorg-xinit xorg-twm xorg-xclock xterm
-	pacman -S kde kde-l10n-zh_cn
-	```
+   ```bash
+   # Install graphics driver & dependency mesa-libgl
+   pacman -S mesa-libgl xf86-video-nouveau
+   pacman -S xorg-server 
+   pacman -S xorg-xinit xorg-twm xorg-xclock xterm
+   ```
 
-2. Starting KDE
+2. KDE installation.
 
-Here using `xinitrc` method to start kde: uncomment the line `exec startkde` in the `.xinitrc` file and then run `startx` or `xinit` to start KDE. (See [here](https://wiki.archlinux.org/index.php/Xinitrc))
+   ```bash
+   pacman -S kde
+   # Language support for Chinese
+   pacman -S kde-l10n-zh_cn
+   ```
+   
+   I used `xinitrc` method to start kde: uncomment the line `exec startkde` in the `.xinitrc` file and then run `startx` or `xinit` to start KDE. (See [here](https://wiki.archlinux.org/index.php/Xinitrc)).
 
-To start X at login: Add the following line to the bottom of the `~/.bash_profile`(See [here](https://wiki.archlinux.org/index.php/Start_X_at_login))
+   To start X at login: Add the following line to the bottom of the `~/.bash_profile`(See [here](https://wiki.archlinux.org/index.php/Start_X_at_login))
 
    ```bash
    [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
@@ -164,19 +174,25 @@ To start X at login: Add the following line to the bottom of the `~/.bash_profil
 
 ## UI installation II (`bumblebee`(`nvidia`/ `intel`), `xfce4`, `LXDM`)
 
-1. I used `bumblebee`(to make NVIDIA Optimus enabled laptops work), `xfce4` desktop and `LXDM` display manager the second time I installed Archlinux. I have to say I'm really satisfied with this setup - powerful, flexible and stable (thus far).
+I used `bumblebee`(to make NVIDIA Optimus enabled laptops work), `xfce4` desktop and `LXDM` display manager the second time I installed Archlinux. I have to say I'm really satisfied with this setup - powerful, flexible and stable (thus far).
 
 ### Bumblebee installation
 
+> Bumblebee is an effort to make NVIDIA Optimus enabled laptops work in GNU/Linux systems.
+
+So make sure your computer is NVIDIA Optimus enabled. See **Q1** at the end of this post.
+
+Before installing Bumblebee, check your BIOS and activate Optimus.(See [here](https://www.google.com/search?q=bios+optimus&es_sm=122&tbm=isch&tbo=u&sa=X&ei=5VMMVaWPLcjIsATFkoDAAg&ved=0CB4QsAQ&biw=1920&bih=913))
+
 **Note: Don't try to install bumblebee, mesa, nvidia and so on seprately, because it did not work when I did so!**
 
-**When executing the second line command, there is some message saying that `bumblebee and nvidia-libgl are in conflict. Remove nvidia-libgl? [y/N]`, select `y`.**  Use `pacman -Si bublebee` command you'll see that it provides `nvidia-libgl`.
+**When executing the second line command, there is some message saying that `bumblebee and nvidia-libgl are in conflict. Remove nvidia-libgl? [y/N]`, select `y`.**  (Use `pacman -Si bublebee` command you'll see that `bumblebee` actually provides `nvidia-libgl`.)
 
 ```bash
 pacman -S nvidia-libgl xorg-server xorg-server-utils xorg-xinit xorg-twm xorg-xclock xterm
 pacman -S bumblebee mesa xf86-video-intel nvidia
 ```
-Then add user to the bumblebee group(change `weich` accordingly), enable bumblebeed.service and reboot:
+Then add user to the bumblebee group(change `weich` accordingly), enable `bumblebeed.service` and reboot:
 
 ```bash
 gpasswd -a weich bumblebee
@@ -213,7 +229,7 @@ Enable `lxdm` by running
 systemctl enable lxdm
 ```
 
-All Done!
+**All Done! Cheers!**
 
 ----------------
 
@@ -222,10 +238,9 @@ All Done!
 Answer: Use the following command to check what graphics card you have in the computer. To my understanding, if you have both `intel` and `NVIDIA` graphics card, your computer is using the NVIDIA Optimus (I'm not sure whether it is right, but I think most of the time it should be right.)
 
    ```bash
-   [weich@dr ~]$ lspci | grep VGA
+   # lspci | grep VGA
    00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor Graphics Controller (rev 09)
    01:00.0 VGA compatible controller: NVIDIA Corporation GK107M [GeForce GT 650M] (rev a1)
    ```
-
 
 
