@@ -15,17 +15,17 @@ It turns out that to install and acess VPN is quite simply in Arch linux, only n
 
 **Installation**
 
-   ```bash
-   sudo pacman -S openconnect
-   ```
+```bash
+sudo pacman -S openconnect
+```
 
 **Usage**
 
 Run `openconnect` as root as follows (change `vpn.mycompany.com` accordingly):
 
-   ```bash
-   openconnect https://vpn.mycompany.com/
-   ```
+```bash
+openconnect https://vpn.mycompany.com/
+```
 
 **References**
 
